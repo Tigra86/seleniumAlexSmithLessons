@@ -2,7 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-class Login_page:
+class LoginPage:
 
     def __init__(self, driver):
         self.driver = driver

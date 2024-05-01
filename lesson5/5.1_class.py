@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 
 
-class Start_class:
+class StartClass:
     def select_product(self):
         driver = webdriver.Chrome()
         base_url = 'https://www.saucedemo.com/'
@@ -13,5 +13,5 @@ class Start_class:
         time.sleep(3)
 
 
-test = Start_class()
+test = StartClass()
 test.select_product()

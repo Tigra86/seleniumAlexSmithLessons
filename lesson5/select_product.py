@@ -2,10 +2,10 @@ import time
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from login_page import Login_page
+from loginpage import LoginPage
 
 
-class Start_class:
+class StartClass:
     def select_product(self):
         driver = webdriver.Chrome()
         wait = WebDriverWait(driver, 30, poll_frequency=1)
@@ -23,7 +23,7 @@ class Start_class:
         your_cart_title_locator = ("xpath", "//span[@class='title']")
         time.sleep(3)
 
-        login = Login_page(driver=driver)
+        login = LoginPage(driver=driver)
         login.authorization(login=valid_login, password=valid_password)
 
         select_product = wait.until(EC.element_to_be_clickable(product_1_add_to_cart_locator))
@@ -41,5 +41,5 @@ class Start_class:
         time.sleep(3)
 
 
-test = Start_class()
+test = StartClass()
 test.select_product()
