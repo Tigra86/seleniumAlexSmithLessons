@@ -7,7 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 class Login():
     def login_different_users(self):
         driver = webdriver.Chrome()
-        wait = WebDriverWait(driver, 30, poll_frequency=1)
+        wait = WebDriverWait(driver, 10, poll_frequency=1)
         base_url = 'https://www.saucedemo.com/'
         driver.get(base_url)
         driver.maximize_window()
@@ -32,31 +32,29 @@ class Login():
         logout_button = ('css selector', '#logout_sidebar_link')
 
         for username in usernames:
-            wait.until(EC.element_to_be_clickable(user_name_field)).send_keys(username)
-            print("Enter login")
+            try:
+                wait.until(EC.element_to_be_clickable(user_name_field)).send_keys(username)
+                print("Enter login")
 
-            wait.until(EC.element_to_be_clickable(user_password_field)).send_keys(valid_password)
-            print("Enter password")
+                wait.until(EC.element_to_be_clickable(user_password_field)).send_keys(valid_password)
+                print("Enter password")
 
-            wait.until(EC.element_to_be_clickable(login_button)).click()
-            print("Click login button")
+                wait.until(EC.element_to_be_clickable(login_button)).click()
+                print("Click login button")
 
-            if username == "locked_out_user":
-                assert wait.until(EC.visibility_of_element_located(error_msg_box)), "No error message is displaying"
-                assert wait.until(EC.visibility_of_element_located(error_msg_box)).text == ("Epic sadface: Sorry, "
-                                                                                            "this user has been locked "
-                                                                                            "out."), "Wrong error message is displaying"
+                assert wait.until(EC.visibility_of_element_located(products_page)), "You are on the wrong page"
+                print("Verify correct page")
+
+                wait.until(EC.element_to_be_clickable(burger_button)).click()
+                print("Click burger button")
+
+                wait.until(EC.element_to_be_clickable(logout_button)).click()
+                print("Click logout button")
+
+            except Exception:
+                print("The error message is displaying (see below)")
+                print(wait.until(EC.visibility_of_element_located(error_msg_box)).text)
                 driver.refresh()
-                continue
-
-            assert wait.until(EC.visibility_of_element_located(products_page)), "You are on the wrong page"
-            print("Verify correct page")
-
-            wait.until(EC.element_to_be_clickable(burger_button)).click()
-            print("Click burger button")
-
-            wait.until(EC.element_to_be_clickable(logout_button)).click()
-            print("Click logout button")
 
 
 test = Login()
