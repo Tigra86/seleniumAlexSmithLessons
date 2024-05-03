@@ -24,9 +24,6 @@ class Person:
         self.weight = kg
 
 
-from base_person import Person
-
-
 class Warrior(Person):
     """Создание класса Воин"""
 
@@ -41,5 +38,5 @@ class Warrior(Person):
 
     def person_description(self):
         """Перераспределение метода родителя"""
-        description = self.name + ", ему " + str(self.age) + " лет"  + ", его заряд ярости " + str(self.rage)
+        description = self.name + ", ему " + str(self.age) + " лет" + ", его заряд ярости " + str(self.rage)
         return description
