@@ -3,12 +3,14 @@ try:
 except ValueError:
     num_1 = "Вы можете ввести только число"
     print(num_1)
+    exit()
 
 try:
     num_2 = int(input("Введите 2-е число: "))
 except ValueError:
     num_2 = "Вы можете ввести только число"
     print(num_2)
+    exit()
 
 operand = input("Введите арифметический знак, один из: +, -, *, /: ")
 
@@ -30,3 +32,4 @@ elif operand == "/":
         print(result)
 else:
     print("Вы можете ввести только арифметический знак, один из: +, -, *, /")
+    exit()
